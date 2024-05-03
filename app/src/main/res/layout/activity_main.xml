@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context=".activities.MainActivity">
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/quotesRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:clipToPadding="false"
+
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <LinearLayout
+        android:id="@+id/layoutSearch"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="12dp"
+
+        android:paddingStart="10dp"
+
+        android:background="@drawable/background_search"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_search"
+            app:tint="@color/colorSearchIcon"/>
+
+        <EditText
+            android:id="@+id/inputSearch"
+
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_weight="1"
+
+            android:layout_marginStart="12dp"
+            android:background="@null"
+            android:hint="@string/search_quotes"
+            android:imeOptions="actionDone"
+            android:importantForAutofill="no"
+            android:includeFontPadding="false"
+            android:inputType="text"
+            android:textColor="@color/colorWhite"
+            android:textColorHint="@color/colorTextHint"
+            android:textSize="13sp"/>
+
+
+        <ImageView
+            android:id="@+id/imageAddQuoteMain"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+
+            android:background="@drawable/background_add_button"
+            android:contentDescription="@string/app_name"
+
+            android:layout_margin="5dp"
+            android:padding="5dp"
+
+            android:src="@drawable/ic_add"
+            app:tint="@color/colorPrimary"/>
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

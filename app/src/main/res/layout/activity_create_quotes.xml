@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context=".activities.CreateQuotesActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="40dp"
+        android:clipToPadding="false"
+        android:paddingBottom="10dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:animateLayoutChanges="true">
+
+            <ImageView
+                android:id="@+id/imageBack"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="12dp"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_back"
+                app:tint="@color/colorIcons"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            
+            <ImageView
+                android:id="@+id/imageSave"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="12dp"
+                android:background="@drawable/background_done_button"
+                android:contentDescription="@string/app_name"
+                android:padding="4dp"
+                android:src="@drawable/ic_done"
+                app:tint="@color/colorIcons"
+                app:layout_constraintBottom_toBottomOf="@id/imageBack"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/imageBack" />
+
+            <EditText
+                android:id="@+id/inputQuoteText"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="12dp"
+                android:background="@null"
+
+                android:hint="@string/quote_text"
+                android:imeOptions="actionDone"
+                android:importantForAutofill="no"
+                android:includeFontPadding="false"
+                android:inputType="text"
+                android:textColor="@color/colorWhite"
+                android:textColorHint="@color/colorTextHint"
+                android:textSize="16sp"
+                app:layout_constraintTop_toBottomOf="@id/imageBack" />
+
+            <TextView
+                android:id="@+id/textDateTime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+
+                android:includeFontPadding="false"
+                android:textColor="@color/colorIcons"
+                android:textSize="10sp"
+                app:layout_constraintEnd_toEndOf="@id/inputQuoteText"
+                app:layout_constraintStart_toStartOf="@id/inputQuoteText"
+                app:layout_constraintTop_toBottomOf="@id/inputQuoteText" />
+
+            <EditText
+                android:id="@+id/inputQuoteAuthor"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="12dp"
+                android:background="@null"
+
+                android:hint="@string/quote_author"
+                android:importantForAutofill="no"
+                android:includeFontPadding="false"
+                android:inputType="textMultiLine"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:textColor="@color/colorTextSubtitle"
+                android:textColorHint="@color/colorTextHint"
+                android:textSize="13sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/viewSubtitleIndicator"
+                app:layout_constraintTop_toBottomOf="@id/textDateTime"/>
+
+            <View
+                android:id="@+id/viewSubtitleIndicator"
+                android:layout_width="5dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="12dp"
+                android:background="@drawable/background_subtitle_indicator"
+                app:layout_constraintBottom_toBottomOf="@id/inputQuoteAuthor"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/inputQuoteAuthor" />
+
+            <EditText
+                android:id="@+id/inputQuoteSource"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginBottom="15dp"
+                android:background="@null"
+
+                android:gravity="top"
+                android:hint="@string/quote_source"
+                android:importantForAutofill="no"
+                android:includeFontPadding="false"
+                android:inputType="textMultiLine"
+                android:minHeight="100dp"
+                android:textColor="@color/colorWhite"
+                android:textColorHint="@color/colorTextHint"
+                android:textSize="13sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/inputQuoteAuthor"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">My_Quotes</string>
+    <string name="my_quotes">My Quotes</string>
+    <string name="search_quotes">Искать</string>
+    <string name="quote_text">Цитата</string>
+    <string name="quote_author">Автор</string>
+    <string name="quote_source">Источник</string>
+</resources>
