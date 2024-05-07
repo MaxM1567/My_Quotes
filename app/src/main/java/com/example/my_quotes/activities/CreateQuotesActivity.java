@@ -2,11 +2,14 @@ package com.example.my_quotes.activities;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.my_quotes.R;
 import com.example.my_quotes.database.QuotesDatabase;
 import com.example.my_quotes.entities.Quote;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -25,6 +29,9 @@ public class CreateQuotesActivity extends AppCompatActivity {
 
     private EditText inputQuoteTitle, inputQuoteSubtitle, inputQuoteText;
     private TextView textDateTime;
+    private View viewSubtitleIndicator;
+
+    private String selectedQuoteCategory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +41,10 @@ public class CreateQuotesActivity extends AppCompatActivity {
         ImageView imageBack = findViewById(R.id.imageBack);
         imageBack.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) { onBackPressed(); }});
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
 
         inputQuoteTitle = findViewById(R.id.inputQuoteText);
         inputQuoteSubtitle = findViewById(R.id.inputQuoteAuthor);
@@ -42,9 +52,9 @@ public class CreateQuotesActivity extends AppCompatActivity {
 
         textDateTime = findViewById(R.id.textDateTime);
 
-        textDateTime.setText(
-                new SimpleDateFormat("EEEE, dd MMMM yyyy HH:mm a", Locale.getDefault()).format(new Date())
-        );
+        textDateTime.setText(new SimpleDateFormat("EEEE, dd MMMM yyyy HH:mm a", Locale.getDefault()).format(new Date()));
+
+        viewSubtitleIndicator = findViewById(R.id.viewSubtitleIndicator);
 
         ImageView imageSave = findViewById(R.id.imageSave);
         imageSave.setOnClickListener(new View.OnClickListener() {
@@ -53,6 +63,11 @@ public class CreateQuotesActivity extends AppCompatActivity {
                 saveQuote();
             }
         });
+
+        selectedQuoteCategory = "#333333";
+
+        initMiscellaneous();
+        setSubTitleIndicator();
     }
 
     private void saveQuote() {
@@ -60,7 +75,7 @@ public class CreateQuotesActivity extends AppCompatActivity {
             Toast.makeText(this, "Вы не вписали цитату!", Toast.LENGTH_SHORT).show();
             return;
         } else if (inputQuoteSubtitle.getText().toString().trim().isEmpty()
-        && inputQuoteText.getText().toString().trim().isEmpty()) {
+                && inputQuoteText.getText().toString().trim().isEmpty()) {
             Toast.makeText(this, "Вы не вписали автора!", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -70,6 +85,7 @@ public class CreateQuotesActivity extends AppCompatActivity {
         quote.setSubtitle(inputQuoteSubtitle.getText().toString());
         quote.setQuoteText(inputQuoteText.getText().toString());
         quote.setDateTime(textDateTime.getText().toString());
+        quote.setColor(selectedQuoteCategory);
 
         @SuppressLint("StaticFieldLeak")
         class SaveQuoteTask extends AsyncTask<Void, Void, Void> {
@@ -89,5 +105,101 @@ public class CreateQuotesActivity extends AppCompatActivity {
         }
 
         new SaveQuoteTask().execute();
+    }
+
+    private void initMiscellaneous() {
+        final LinearLayout layoutMiscellaneous = findViewById(R.id.layoutMiscellaneous);
+        final BottomSheetBehavior<LinearLayout> bottomSheetBehavior = BottomSheetBehavior.from(layoutMiscellaneous);
+        layoutMiscellaneous.findViewById(R.id.textMiscellaneous).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (bottomSheetBehavior.getState() != BottomSheetBehavior.STATE_EXPANDED) {
+                    bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+                } else {
+                    bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                }
+            }
+        });
+
+        final ImageView imageColor1 = layoutMiscellaneous.findViewById(R.id.imageColor1);
+        final ImageView imageColor2 = layoutMiscellaneous.findViewById(R.id.imageColor2);
+        final ImageView imageColor3 = layoutMiscellaneous.findViewById(R.id.imageColor3);
+        final ImageView imageColor4 = layoutMiscellaneous.findViewById(R.id.imageColor4);
+        final ImageView imageColor5 = layoutMiscellaneous.findViewById(R.id.imageColor5);
+
+        layoutMiscellaneous.findViewById(R.id.viewColor1).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                selectedQuoteCategory = "#333333";
+                imageColor1.setImageResource(R.drawable.ic_done);
+                imageColor2.setImageResource(0);
+                imageColor3.setImageResource(0);
+                imageColor4.setImageResource(0);
+                imageColor5.setImageResource(0);
+
+                setSubTitleIndicator();
+            }
+        });
+
+        layoutMiscellaneous.findViewById(R.id.viewColor2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                selectedQuoteCategory = "#FDBE3B";
+                imageColor1.setImageResource(0);
+                imageColor2.setImageResource(R.drawable.ic_done);
+                imageColor3.setImageResource(0);
+                imageColor4.setImageResource(0);
+                imageColor5.setImageResource(0);
+
+                setSubTitleIndicator();
+            }
+        });
+
+        layoutMiscellaneous.findViewById(R.id.viewColor3).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                selectedQuoteCategory = "#FF4842";
+                imageColor1.setImageResource(0);
+                imageColor2.setImageResource(0);
+                imageColor3.setImageResource(R.drawable.ic_done);
+                imageColor4.setImageResource(0);
+                imageColor5.setImageResource(0);
+
+                setSubTitleIndicator();
+            }
+        });
+
+        layoutMiscellaneous.findViewById(R.id.viewColor4).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                selectedQuoteCategory = "#3A52Fc";
+                imageColor1.setImageResource(0);
+                imageColor2.setImageResource(0);
+                imageColor3.setImageResource(0);
+                imageColor4.setImageResource(R.drawable.ic_done);
+                imageColor5.setImageResource(0);
+
+                setSubTitleIndicator();
+            }
+        });
+
+        layoutMiscellaneous.findViewById(R.id.viewColor5).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                selectedQuoteCategory = "#000000";
+                imageColor1.setImageResource(0);
+                imageColor2.setImageResource(0);
+                imageColor3.setImageResource(0);
+                imageColor4.setImageResource(0);
+                imageColor5.setImageResource(R.drawable.ic_done);
+
+                setSubTitleIndicator();
+            }
+        });
+    }
+
+    private  void setSubTitleIndicator() {
+        GradientDrawable gradientDrawable = (GradientDrawable) viewSubtitleIndicator.getBackground();
+        gradientDrawable.setColor(Color.parseColor(selectedQuoteCategory));
     }
 }

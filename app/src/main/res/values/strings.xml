@@ -5,4 +5,6 @@
     <string name="quote_text">Цитата</string>
     <string name="quote_author">Автор</string>
     <string name="quote_source">Источник</string>
+    <string name="miscellaneous">Дополнительно</string>
+    <string name="select_category">Категория:</string>
 </resources>

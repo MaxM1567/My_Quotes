@@ -9,7 +9,13 @@
     <color name="colorQuickActionsBackground">#2F2D2E</color>
     <color name="colorIcons">#A4A4A4</color>
     <color name="colorTextSubtitle">#CECECE</color>
-    <color name="colorDefaultNoteColor">#333333</color>
-    <color name="colorNoteSubtitleText">#FAFAFA</color>
+    <color name="colorDefaultQuoteColor">#333333</color>
+    <color name="colorQuoteSubtitleText">#FAFAFA</color>
     <color name="colorSearchBackground">#333333</color>
+    <color name="colorMiscellaneousBackground">#1F1F1F</color>
+
+    <color name="colorQuoteColor2">#FDBE3B</color>
+    <color name="colorQuoteColor3">#FF4842</color>
+    <color name="colorQuoteColor4">#3A52Fc</color>
+    <color name="colorQuoteColor5">#000000</color>
 </resources>

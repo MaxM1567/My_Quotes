@@ -1,5 +1,8 @@
 package com.example.my_quotes.adapters;
 
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,12 +52,14 @@ public class QuotesAdapter extends RecyclerView.Adapter<QuotesAdapter.QuoteViewH
 
     static class QuoteViewHolder extends RecyclerView.ViewHolder {
         TextView textTitle, textSubtitle, textDateTime;
+        View categoryIndicator;
 
         QuoteViewHolder(@NonNull View itemView) {
             super(itemView);
             textTitle = itemView.findViewById(R.id.textTitle);
             textSubtitle = itemView.findViewById(R.id.textSubtitle);
             textDateTime = itemView.findViewById(R.id.textDateTime);
+            categoryIndicator = itemView.findViewById(R.id.categoryIndicator);
         }
 
         void setQuote(Quote quote) {
@@ -65,6 +70,13 @@ public class QuotesAdapter extends RecyclerView.Adapter<QuotesAdapter.QuoteViewH
                 textSubtitle.setText(quote.getSubtitle());
             }
             textDateTime.setText(quote.getDateTime());
+
+            GradientDrawable gradientDrawable = (GradientDrawable) categoryIndicator.getBackground();
+            if (quote.getColor() != null) {
+                gradientDrawable.setColor(Color.parseColor(quote.getColor()));
+            } else {
+                gradientDrawable.setColor(Color.parseColor("#333333"));
+            }
         }
     }
 }
