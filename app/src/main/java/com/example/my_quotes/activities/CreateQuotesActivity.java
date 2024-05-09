@@ -3,16 +3,21 @@ package com.example.my_quotes.activities;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.GradientDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Patterns;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.my_quotes.R;
@@ -30,8 +35,11 @@ public class CreateQuotesActivity extends AppCompatActivity {
     private EditText inputQuoteTitle, inputQuoteSubtitle, inputQuoteText;
     private TextView textDateTime;
     private View viewSubtitleIndicator;
+    private TextView textWebSourceURL;
+    private LinearLayout layoutWebURL;
 
     private String selectedQuoteCategory;
+    private AlertDialog dialogAddSourceURL;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +64,9 @@ public class CreateQuotesActivity extends AppCompatActivity {
 
         viewSubtitleIndicator = findViewById(R.id.viewSubtitleIndicator);
 
+        textWebSourceURL = findViewById(R.id.textWebURL);
+        layoutWebURL = findViewById(R.id.layoutSourceURL);
+
         ImageView imageSave = findViewById(R.id.imageSave);
         imageSave.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,8 +85,7 @@ public class CreateQuotesActivity extends AppCompatActivity {
         if (inputQuoteTitle.getText().toString().trim().isEmpty()) {
             Toast.makeText(this, "Вы не вписали цитату!", Toast.LENGTH_SHORT).show();
             return;
-        } else if (inputQuoteSubtitle.getText().toString().trim().isEmpty()
-                && inputQuoteText.getText().toString().trim().isEmpty()) {
+        } else if (inputQuoteSubtitle.getText().toString().trim().isEmpty() && inputQuoteText.getText().toString().trim().isEmpty()) {
             Toast.makeText(this, "Вы не вписали автора!", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -86,6 +96,10 @@ public class CreateQuotesActivity extends AppCompatActivity {
         quote.setQuoteText(inputQuoteText.getText().toString());
         quote.setDateTime(textDateTime.getText().toString());
         quote.setColor(selectedQuoteCategory);
+
+        if (layoutWebURL.getVisibility() == View.VISIBLE) {
+            quote.setWebLink(textWebSourceURL.getText().toString());
+        }
 
         @SuppressLint("StaticFieldLeak")
         class SaveQuoteTask extends AsyncTask<Void, Void, Void> {
@@ -196,10 +210,58 @@ public class CreateQuotesActivity extends AppCompatActivity {
                 setSubTitleIndicator();
             }
         });
+
+        layoutMiscellaneous.findViewById(R.id.layoutAddSourceUrl).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                showAddURLSourceDialog();
+            }
+        });
     }
 
-    private  void setSubTitleIndicator() {
+    private void setSubTitleIndicator() {
         GradientDrawable gradientDrawable = (GradientDrawable) viewSubtitleIndicator.getBackground();
         gradientDrawable.setColor(Color.parseColor(selectedQuoteCategory));
+    }
+
+    private void showAddURLSourceDialog() {
+        if (dialogAddSourceURL == null) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(CreateQuotesActivity.this);
+            View view = LayoutInflater.from(this).inflate(R.layout.layout_add_url_source, (ViewGroup) findViewById(R.id.layoutAddUrlSourceContainer));
+
+            builder.setView(view);
+            dialogAddSourceURL = builder.create();
+            if (dialogAddSourceURL.getWindow() != null) {
+                dialogAddSourceURL.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+            }
+
+            final EditText inputSourceURL = view.findViewById(R.id.inputSourceURL);
+            inputSourceURL.requestFocus();
+
+            view.findViewById(R.id.textAdd).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (inputSourceURL.getText().toString().trim().isEmpty()) {
+                        Toast.makeText(CreateQuotesActivity.this, "Enter URL", Toast.LENGTH_SHORT).show();
+                    } else if (!Patterns.WEB_URL.matcher(inputSourceURL.getText().toString()).matches()) {
+                        Toast.makeText(CreateQuotesActivity.this, "Enter valid URL", Toast.LENGTH_SHORT).show();
+                    } else {
+                        textWebSourceURL.setText(inputSourceURL.getText().toString());
+                        layoutWebURL.setVisibility(View.VISIBLE);
+                        dialogAddSourceURL.dismiss();
+                    }
+                }
+            });
+
+            view.findViewById((R.id.textCancel)).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dialogAddSourceURL.dismiss();
+                }
+            });
+        }
+
+        dialogAddSourceURL.show();
     }
 }

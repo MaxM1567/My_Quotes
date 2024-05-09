@@ -7,4 +7,8 @@
     <string name="quote_source">Источник</string>
     <string name="miscellaneous">Дополнительно</string>
     <string name="select_category">Категория:</string>
+    <string name="add_url">Добавить источник</string>
+    <string name="enter_source">Добавьте ссылку или название</string>
+    <string name="save">Сохранить</string>
+    <string name="cancel_dialog">Отмена</string>
 </resources>
