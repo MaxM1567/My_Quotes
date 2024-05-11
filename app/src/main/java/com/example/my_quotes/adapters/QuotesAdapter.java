@@ -2,6 +2,7 @@ package com.example.my_quotes.adapters;
 
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,15 +16,22 @@ import com.example.my_quotes.R;
 import com.example.my_quotes.entities.Quote;
 import com.example.my_quotes.listeners.QuotesListener;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+import android.os.Handler;
 
 public class QuotesAdapter extends RecyclerView.Adapter<QuotesAdapter.QuoteViewHolder> {
     private List<Quote> quotes;
     private QuotesListener quotesListener;
+    private Timer timer;
+    private List<Quote> quoteSource;
 
     public QuotesAdapter(List<Quote> quotes, QuotesListener quotesListener) {
         this.quotes = quotes;
         this.quotesListener = quotesListener;
+        quoteSource = quotes;
     }
 
     @NonNull
@@ -91,6 +99,41 @@ public class QuotesAdapter extends RecyclerView.Adapter<QuotesAdapter.QuoteViewH
             } else {
                 gradientDrawable.setColor(Color.parseColor("#333333"));
             }
+        }
+    }
+
+    public void searchQuotes(final String searchKeyword) {
+        timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                if (searchKeyword.trim().isEmpty()) {
+                    quotes = quoteSource;
+                } else {
+                    ArrayList<Quote> temp = new ArrayList<>();
+                    for (Quote quote : quoteSource) {
+                        if (quote.getTitle().toLowerCase().contains(searchKeyword.toLowerCase())
+                                || quote.getSubtitle().toLowerCase().contains(searchKeyword.toLowerCase())
+                                || quote.getQuoteText().toLowerCase().contains(searchKeyword.toLowerCase())) {
+                            temp.add(quote);
+                        }
+                    }
+                    quotes = temp;
+                }
+
+                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                    @Override
+                    public void run() {
+                        notifyDataSetChanged();
+                    }
+                });
+            }
+        }, 500);
+    }
+
+    public void cancelTimer() {
+        if (timer != null) {
+            timer.cancel();
         }
     }
 }

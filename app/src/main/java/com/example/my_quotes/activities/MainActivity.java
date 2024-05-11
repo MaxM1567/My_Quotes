@@ -4,7 +4,10 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
@@ -58,6 +61,26 @@ public class MainActivity extends AppCompatActivity implements QuotesListener {
         quotesRecyclerView.setAdapter(quotesAdapter);
 
         getQuotes(REQUEST_CODE_SHOW_QUOTES, false);
+
+        EditText inputSearch = findViewById(R.id.inputSearch);
+        inputSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                quotesAdapter.cancelTimer();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (!quoteList.isEmpty()) {
+                    quotesAdapter.searchQuotes(s.toString());
+                }
+            }
+        });
     }
 
     @Override
