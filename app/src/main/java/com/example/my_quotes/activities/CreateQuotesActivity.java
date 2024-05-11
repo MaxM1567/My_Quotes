@@ -41,6 +41,8 @@ public class CreateQuotesActivity extends AppCompatActivity {
     private String selectedQuoteCategory;
     private AlertDialog dialogAddSourceURL;
 
+    private Quote alreadyAvailabQuote;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,8 +79,25 @@ public class CreateQuotesActivity extends AppCompatActivity {
 
         selectedQuoteCategory = "#333333";
 
+        if (getIntent().getBooleanExtra("isViewOrUpdate", false)) {
+            alreadyAvailabQuote = (Quote) getIntent().getSerializableExtra("quote");
+            setViewOrUpdateQuote();
+        }
+
         initMiscellaneous();
         setSubTitleIndicator();
+    }
+
+    private void setViewOrUpdateQuote() {
+        inputQuoteTitle.setText(alreadyAvailabQuote.getTitle());
+        inputQuoteSubtitle.setText(alreadyAvailabQuote.getSubtitle());
+        inputQuoteText.setText(alreadyAvailabQuote.getQuoteText());
+        textDateTime.setText(alreadyAvailabQuote.getDateTime());
+
+        if (alreadyAvailabQuote.getWebLink() != null && !alreadyAvailabQuote.getWebLink().trim().isEmpty()) {
+            textWebSourceURL.setText(alreadyAvailabQuote.getWebLink());
+            layoutWebURL.setVisibility(View.VISIBLE);
+        }
     }
 
     private void saveQuote() {
@@ -99,6 +118,10 @@ public class CreateQuotesActivity extends AppCompatActivity {
 
         if (layoutWebURL.getVisibility() == View.VISIBLE) {
             quote.setWebLink(textWebSourceURL.getText().toString());
+        }
+
+        if (alreadyAvailabQuote != null) {
+            quote.setId(alreadyAvailabQuote.getId());
         }
 
         @SuppressLint("StaticFieldLeak")
@@ -210,6 +233,23 @@ public class CreateQuotesActivity extends AppCompatActivity {
                 setSubTitleIndicator();
             }
         });
+
+        if (alreadyAvailabQuote != null && alreadyAvailabQuote.getColor() != null && !alreadyAvailabQuote.getColor().trim().isEmpty()) {
+            switch (alreadyAvailabQuote.getColor()) {
+                case "#FDBE3B":
+                    layoutMiscellaneous.findViewById(R.id.viewColor2).performClick();
+                    break;
+                case "#FF4842":
+                    layoutMiscellaneous.findViewById(R.id.viewColor3).performClick();
+                    break;
+                case "#3A52Fc":
+                    layoutMiscellaneous.findViewById(R.id.viewColor4).performClick();
+                    break;
+                case "#000000":
+                    layoutMiscellaneous.findViewById(R.id.viewColor5).performClick();
+                    break;
+            }
+        }
 
         layoutMiscellaneous.findViewById(R.id.layoutAddSourceUrl).setOnClickListener(new View.OnClickListener() {
             @Override

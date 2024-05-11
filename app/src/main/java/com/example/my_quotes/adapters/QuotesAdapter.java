@@ -2,10 +2,10 @@ package com.example.my_quotes.adapters;
 
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,14 +13,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.my_quotes.R;
 import com.example.my_quotes.entities.Quote;
+import com.example.my_quotes.listeners.QuotesListener;
 
 import java.util.List;
 
 public class QuotesAdapter extends RecyclerView.Adapter<QuotesAdapter.QuoteViewHolder> {
     private List<Quote> quotes;
+    private QuotesListener quotesListener;
 
-    public QuotesAdapter(List<Quote> quotes) {
+    public QuotesAdapter(List<Quote> quotes, QuotesListener quotesListener) {
         this.quotes = quotes;
+        this.quotesListener = quotesListener;
     }
 
     @NonNull
@@ -38,6 +41,15 @@ public class QuotesAdapter extends RecyclerView.Adapter<QuotesAdapter.QuoteViewH
     @Override
     public void onBindViewHolder(@NonNull QuoteViewHolder holder, int position) {
         holder.setQuote(quotes.get(position));
+        holder.layoutQuote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int adapterPosition = holder.getAdapterPosition();
+                if (adapterPosition != RecyclerView.NO_POSITION) {
+                    quotesListener.onQuoteClicked(quotes.get(adapterPosition), adapterPosition);
+                }
+            }
+        });
     }
 
     @Override
@@ -52,6 +64,7 @@ public class QuotesAdapter extends RecyclerView.Adapter<QuotesAdapter.QuoteViewH
 
     static class QuoteViewHolder extends RecyclerView.ViewHolder {
         TextView textTitle, textSubtitle, textDateTime;
+        LinearLayout layoutQuote;
         View categoryIndicator;
 
         QuoteViewHolder(@NonNull View itemView) {
@@ -60,6 +73,7 @@ public class QuotesAdapter extends RecyclerView.Adapter<QuotesAdapter.QuoteViewH
             textSubtitle = itemView.findViewById(R.id.textSubtitle);
             textDateTime = itemView.findViewById(R.id.textDateTime);
             categoryIndicator = itemView.findViewById(R.id.categoryIndicator);
+            layoutQuote = itemView.findViewById(R.id.layoutQuote);
         }
 
         void setQuote(Quote quote) {
