@@ -40,6 +40,7 @@ public class CreateQuotesActivity extends AppCompatActivity {
 
     private String selectedQuoteCategory;
     private AlertDialog dialogAddSourceURL;
+    private AlertDialog dialogDeleteQuote;
 
     private Quote alreadyAvailabQuote;
 
@@ -266,6 +267,69 @@ public class CreateQuotesActivity extends AppCompatActivity {
                 showAddURLSourceDialog();
             }
         });
+
+        if (alreadyAvailabQuote != null) {
+            layoutMiscellaneous.findViewById(R.id.layoutDeleteQuote).setVisibility(View.VISIBLE);
+            layoutMiscellaneous.findViewById(R.id.layoutDeleteQuote).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                    showDeleteDialog();
+                }
+            });
+        }
+    }
+
+    private void showDeleteDialog() {
+        if (dialogDeleteQuote == null) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(CreateQuotesActivity.this);
+            View view = LayoutInflater.from(this).inflate(
+                    R.layout.layout_delete_qoute,
+                    (ViewGroup) findViewById(R.id.layoutDeleteQuoteContainer)
+            );
+            builder.setView(view);
+            dialogDeleteQuote = builder.create();
+
+            if (dialogDeleteQuote.getWindow() != null) {
+                dialogDeleteQuote.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+            }
+            view.findViewById(R.id.textDeleteQuote).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    @SuppressLint("StaticFieldLeak")
+                    class DeleteQuoteTask extends AsyncTask<Void, Void, Void> {
+
+                        @Override
+                        protected Void doInBackground(Void... voids) {
+                            QuotesDatabase.getDatabase(getApplicationContext()).quoteDao()
+                                    .deleteQuote(alreadyAvailabQuote);
+                            return null;
+                        }
+
+                        @Override
+                        protected void onPostExecute(Void unused) {
+                            super.onPostExecute(unused);
+                            Intent intent = new Intent();
+                            intent.putExtra("isQuoteDeleted", true);
+                            setResult(RESULT_OK, intent);
+                            finish();
+                        }
+                    }
+
+                    new DeleteQuoteTask().execute();
+
+                }
+            });
+
+            view.findViewById(R.id.textCancel).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dialogDeleteQuote.dismiss();
+                }
+            });
+        }
+        dialogDeleteQuote.show();
     }
 
     private void setSubTitleIndicator() {

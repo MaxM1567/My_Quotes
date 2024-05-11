@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -58,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements QuotesListener {
         quotesAdapter = new QuotesAdapter(quoteList, this);
         quotesRecyclerView.setAdapter(quotesAdapter);
 
-        getQuotes(REQUEST_CODE_SHOW_QUOTES);
+        getQuotes(REQUEST_CODE_SHOW_QUOTES, false);
     }
 
     @Override
@@ -70,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements QuotesListener {
         startActivityForResult(intent, REQUEST_CODE_UPDATE_QUOTE);
     }
 
-    private void getQuotes(final int requestCode) {
+    private void getQuotes(final int requestCode, final boolean isQuoteDeleted) {
         @SuppressLint("StaticFieldLeak")
         class GetQuotesTask extends AsyncTask<Void, Void, List<Quote>> {
             @Override
@@ -93,9 +92,13 @@ public class MainActivity extends AppCompatActivity implements QuotesListener {
 
                 } else if (requestCode == REQUEST_CODE_UPDATE_QUOTE) {
                     quoteList.remove(quoteClickedPosition);
-                    quoteList.add(quoteClickedPosition, quotes.get(quoteClickedPosition));
 
-                    quotesAdapter.notifyItemChanged(quoteClickedPosition);
+                    if (isQuoteDeleted) {
+                        quotesAdapter.notifyItemRemoved(quoteClickedPosition);
+                    } else {
+                        quoteList.add(quoteClickedPosition, quotes.get(quoteClickedPosition));
+                        quotesAdapter.notifyItemChanged(quoteClickedPosition);
+                    }
                 }
             }
         }
@@ -107,10 +110,10 @@ public class MainActivity extends AppCompatActivity implements QuotesListener {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE_ADD_QUOTE && resultCode == RESULT_OK) {
-            getQuotes(REQUEST_CODE_ADD_QUOTE);
+            getQuotes(REQUEST_CODE_ADD_QUOTE, false);
         } else if (requestCode == REQUEST_CODE_UPDATE_QUOTE && resultCode == RESULT_OK) {
             if (data != null) {
-                getQuotes(REQUEST_CODE_UPDATE_QUOTE);
+                getQuotes(REQUEST_CODE_UPDATE_QUOTE, data.getBooleanExtra("isQuoteDeleted", false));
             }
         }
     }

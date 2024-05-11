@@ -11,4 +11,7 @@
     <string name="enter_source">Добавьте ссылку или название</string>
     <string name="save">Сохранить</string>
     <string name="cancel_dialog">Отмена</string>
+    <string name="delete_quote">Удалить цитату</string>
+    <string name="delete">Удалить</string>
+    <string name="warning_quote_delete">Вы уверенны, что хотите удалить эту цитату</string>
 </resources>
