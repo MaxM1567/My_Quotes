@@ -46,7 +46,7 @@ public class CreateQuotesActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_quotes);
+        setContentView(R.layout.activity_create_quote);
 
         ImageView imageBack = findViewById(R.id.imageBack);
         imageBack.setOnClickListener(new View.OnClickListener() {
@@ -66,7 +66,7 @@ public class CreateQuotesActivity extends AppCompatActivity {
 
         viewSubtitleIndicator = findViewById(R.id.viewSubtitleIndicator);
 
-        textWebSourceURL = findViewById(R.id.textWebURL);
+        textWebSourceURL = findViewById(R.id.textSourceURL);
         layoutWebURL = findViewById(R.id.layoutSourceURL);
 
         ImageView imageSave = findViewById(R.id.imageSave);
@@ -83,6 +83,14 @@ public class CreateQuotesActivity extends AppCompatActivity {
             alreadyAvailabQuote = (Quote) getIntent().getSerializableExtra("quote");
             setViewOrUpdateQuote();
         }
+
+        findViewById(R.id.imageRemoveSourceURL).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                textWebSourceURL.setText(null);
+                layoutWebURL.setVisibility(View.GONE);
+            }
+        });
 
         initMiscellaneous();
         setSubTitleIndicator();

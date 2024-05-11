@@ -119,10 +119,11 @@
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:visibility="gone"
-                app:layout_constraintTop_toBottomOf="@id/inputQuoteAuthor">
+                app:layout_constraintTop_toBottomOf="@id/inputQuoteAuthor"
+                tools:ignore="UseCompoundDrawables">
 
                 <TextView
-                    android:id="@+id/textWebURL"
+                    android:id="@+id/textSourceURL"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -130,6 +131,14 @@
 
 
                     android:textSize="15sp" />
+
+                <ImageView
+                    android:id="@+id/imageRemoveSourceURL"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/ic_delete"
+                    app:tint="@color/colorDelete" />
 
             </LinearLayout>
 
