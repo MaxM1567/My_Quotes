@@ -7,147 +7,294 @@
     android:layout_height="wrap_content"
     android:background="@drawable/background_miscellaneous"
     android:orientation="vertical"
-    app:behavior_peekHeight="40dp"
+    app:behavior_peekHeight="50dp"
     app:layout_behavior="@string/bottom_sheet_behavior">
 
     <TextView
         android:id="@+id/textMiscellaneous"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
 
         android:gravity="center"
         android:includeFontPadding="false"
         android:text="@string/miscellaneous"
+        android:textStyle="bold"
         android:textColor="@color/colorWhite"
-        android:textSize="13sp"/>
+        android:textSize="20sp"/>
+
+    <TextView
+        android:visibility="gone"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="10dp"
+
+        android:maxLines="1"
+        android:text="@string/select_category"
+        android:textColor="@color/categoryText"
+        android:textSize="18sp"/>
 
     <LinearLayout
-        android:id="@+id/layoutQuoteColor"
+        android:id="@+id/layoutQuoteCategoryRow1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:gravity="center_vertical"
+
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="10dp"
+
+        android:gravity="fill_horizontal"
         android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:layout_marginEnd="13dp"
-
-            android:maxLines="1"
-            android:text="@string/select_category"
-            android:textColor="@color/colorWhite"
-            android:textSize="18sp"/>
 
 
         <FrameLayout
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1">
 
-            <View
-                android:id="@+id/viewColor1"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:background="@drawable/background_quote_color_1"/>
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <View
+                    android:id="@+id/viewColor1"
+                    android:layout_width="100dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/background_quote_color_1"/>
+
+                <TextView
+                    android:id="@+id/TextviewColor1"
+
+                    android:text="@string/textCategoryOther"
+                    android:textSize="15sp"
+                    android:textColor="@color/colorWhite"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_gravity="center"/>
+            </FrameLayout>
 
             <ImageView
                 android:id="@+id/imageColor1"
-                android:layout_width="35dp"
+                android:layout_width="100dp"
                 android:layout_height="35dp"
                 android:contentDescription="@string/app_name"
-                android:padding="10dp"
+                android:padding="1dp"
                 android:src="@drawable/ic_done"
-                app:tint="@color/colorWhite"/>
+                app:tint="@color/grayDone"/>
 
         </FrameLayout>
 
         <FrameLayout
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1">
 
-            <View
-                android:id="@+id/viewColor2"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:background="@drawable/background_quote_color_2"/>
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/imageColor2"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:contentDescription="@string/app_name"
-                android:padding="10dp"
-                app:tint="@color/colorWhite"/>
+                <View
+                    android:id="@+id/viewColor3"
+                    android:layout_width="100dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/background_quote_color_3"/>
 
-        </FrameLayout>
+                <TextView
+                    android:id="@+id/TextviewColor3"
 
-        <FrameLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
+                    android:text="@string/textCategoryBooks"
+                    android:textSize="15sp"
+                    android:textColor="@color/colorWhite"
 
-            <View
-                android:id="@+id/viewColor3"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:background="@drawable/background_quote_color_3"/>
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_gravity="center"/>
+            </FrameLayout>
 
             <ImageView
                 android:id="@+id/imageColor3"
-                android:layout_width="35dp"
+                android:layout_width="100dp"
                 android:layout_height="35dp"
                 android:contentDescription="@string/app_name"
-                android:padding="10dp"
-                app:tint="@color/colorWhite"/>
+                android:padding="1dp"
+                app:tint="@color/grayDone"/>
 
         </FrameLayout>
 
         <FrameLayout
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1">
+            android:layout_weight="0">
 
-            <View
-                android:id="@+id/viewColor4"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:background="@drawable/background_quote_color_4"/>
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <View
+                    android:id="@+id/viewColor6"
+                    android:layout_width="100dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/background_quote_color_6"/>
+
+                <TextView
+                    android:id="@+id/TextviewColor6"
+
+                    android:text="@string/textCategoryGames"
+                    android:textSize="15sp"
+                    android:textColor="@color/colorWhite"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_gravity="center"/>
+            </FrameLayout>
 
             <ImageView
-                android:id="@+id/imageColor4"
-                android:layout_width="35dp"
+                android:id="@+id/imageColor6"
+                android:layout_width="100dp"
                 android:layout_height="35dp"
                 android:contentDescription="@string/app_name"
-                android:padding="10dp"
-                app:tint="@color/colorWhite"/>
-
-        </FrameLayout>
-
-        <FrameLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
-
-            <View
-                android:id="@+id/viewColor5"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:background="@drawable/background_quote_color_5"/>
-
-            <ImageView
-                android:id="@+id/imageColor5"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:contentDescription="@string/app_name"
-                android:padding="10dp"
-                app:tint="@color/colorWhite"/>
+                android:padding="1dp"
+                app:tint="@color/grayDone"/>
 
         </FrameLayout>
 
     </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/layoutQuoteCategoryRow2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="10dp"
+
+        android:gravity="fill_horizontal"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <View
+                    android:id="@+id/viewColor2"
+                    android:layout_width="100dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/background_quote_color_2"/>
+
+                <TextView
+                    android:id="@+id/TextviewColor2"
+
+                    android:text="@string/textCategorySerials"
+                    android:textSize="15sp"
+                    android:textColor="@color/colorWhite"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_gravity="center"/>
+            </FrameLayout>
+
+            <ImageView
+                android:id="@+id/imageColor2"
+                android:layout_width="100dp"
+                android:layout_height="35dp"
+                android:contentDescription="@string/app_name"
+                android:padding="1dp"
+                app:tint="@color/grayDone"/>
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <View
+                    android:id="@+id/viewColor4"
+                    android:layout_width="100dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/background_quote_color_4"/>
+
+                <TextView
+                    android:id="@+id/TextviewColor4"
+
+                    android:text="@string/textCategoryFilms"
+                    android:textSize="15sp"
+                    android:textColor="@color/colorWhite"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_gravity="center"/>
+            </FrameLayout>
+
+            <ImageView
+                android:id="@+id/imageColor4"
+                android:layout_width="100dp"
+                android:layout_height="35dp"
+                android:contentDescription="@string/app_name"
+                android:padding="1dp"
+                app:tint="@color/grayDone"/>
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0">
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <View
+                    android:id="@+id/viewColor5"
+                    android:layout_width="100dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/background_quote_color_5"/>
+
+                <TextView
+                    android:id="@+id/TextviewColor5"
+
+                    android:text="@string/textCategoryArticles"
+                    android:textSize="15sp"
+                    android:textColor="@color/colorWhite"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_gravity="center"/>
+            </FrameLayout>
+
+            <ImageView
+                android:id="@+id/imageColor5"
+                android:layout_width="100dp"
+                android:layout_height="35dp"
+                android:contentDescription="@string/app_name"
+                android:padding="1dp"
+                app:tint="@color/grayDone"/>
+
+        </FrameLayout>
+
+    </LinearLayout>
+
 
     <LinearLayout
         android:id="@+id/layoutAddSourceUrl"

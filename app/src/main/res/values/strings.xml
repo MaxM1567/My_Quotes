@@ -4,14 +4,21 @@
     <string name="search_quotes">Искать</string>
     <string name="quote_text">Цитата</string>
     <string name="quote_author">Автор</string>
-    <string name="quote_source">Источник</string>
+    <string name="quote_source">Дополнительное описание</string>
     <string name="miscellaneous">Дополнительно</string>
     <string name="select_category">Категория:</string>
-    <string name="add_url">Добавить источник</string>
-    <string name="enter_source">Добавьте ссылку или название</string>
+    <string name="add_url">Добавить ссылку на источник</string>
+    <string name="enter_source">Ссылка на источник</string>
     <string name="save">Сохранить</string>
     <string name="cancel_dialog">Отмена</string>
     <string name="delete_quote">Удалить цитату</string>
     <string name="delete">Удалить</string>
     <string name="warning_quote_delete">Вы уверенны, что хотите удалить эту цитату</string>
+
+    <string name="textCategoryOther">Другое</string>
+    <string name="textCategorySerials">Сериал</string>
+    <string name="textCategoryBooks">Книга</string>
+    <string name="textCategoryGames">Игра</string>
+    <string name="textCategoryFilms">Фильм</string>
+    <string name="textCategoryArticles">Статья</string>
 </resources>

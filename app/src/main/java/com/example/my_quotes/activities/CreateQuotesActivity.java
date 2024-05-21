@@ -63,9 +63,9 @@ public class CreateQuotesActivity extends AppCompatActivity {
 
         textDateTime = findViewById(R.id.textDateTime);
 
-        textDateTime.setText(new SimpleDateFormat("EEEE, dd MMMM yyyy HH:mm a", Locale.getDefault()).format(new Date()));
+        textDateTime.setText(new SimpleDateFormat("EEEE, dd MMMM yyyy HH:mm", Locale.getDefault()).format(new Date()));
 
-        viewSubtitleIndicator = findViewById(R.id.viewSubtitleIndicator);
+        viewSubtitleIndicator = findViewById(R.id.viewAuthorIndicator);
 
         textWebSourceURL = findViewById(R.id.textSourceURL);
         layoutWebURL = findViewById(R.id.layoutSourceURL);
@@ -78,7 +78,7 @@ public class CreateQuotesActivity extends AppCompatActivity {
             }
         });
 
-        selectedQuoteCategory = "#333333";
+        selectedQuoteCategory = "#2a313f";
 
         if (getIntent().getBooleanExtra("isViewOrUpdate", false)) {
             alreadyAvailabQuote = (Quote) getIntent().getSerializableExtra("quote");
@@ -169,6 +169,7 @@ public class CreateQuotesActivity extends AppCompatActivity {
 
         final ImageView imageColor1 = layoutMiscellaneous.findViewById(R.id.imageColor1);
         final ImageView imageColor2 = layoutMiscellaneous.findViewById(R.id.imageColor2);
+        final ImageView imageColor6 = layoutMiscellaneous.findViewById(R.id.imageColor6);
         final ImageView imageColor3 = layoutMiscellaneous.findViewById(R.id.imageColor3);
         final ImageView imageColor4 = layoutMiscellaneous.findViewById(R.id.imageColor4);
         final ImageView imageColor5 = layoutMiscellaneous.findViewById(R.id.imageColor5);
@@ -176,12 +177,13 @@ public class CreateQuotesActivity extends AppCompatActivity {
         layoutMiscellaneous.findViewById(R.id.viewColor1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                selectedQuoteCategory = "#333333";
+                selectedQuoteCategory = "#2a313f";
                 imageColor1.setImageResource(R.drawable.ic_done);
                 imageColor2.setImageResource(0);
                 imageColor3.setImageResource(0);
                 imageColor4.setImageResource(0);
                 imageColor5.setImageResource(0);
+                imageColor6.setImageResource(0);
 
                 setSubTitleIndicator();
             }
@@ -196,6 +198,22 @@ public class CreateQuotesActivity extends AppCompatActivity {
                 imageColor3.setImageResource(0);
                 imageColor4.setImageResource(0);
                 imageColor5.setImageResource(0);
+                imageColor6.setImageResource(0);
+
+                setSubTitleIndicator();
+            }
+        });
+
+        layoutMiscellaneous.findViewById(R.id.viewColor6).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                selectedQuoteCategory = "#FF6600";
+                imageColor1.setImageResource(0);
+                imageColor2.setImageResource(0);
+                imageColor3.setImageResource(0);
+                imageColor4.setImageResource(0);
+                imageColor5.setImageResource(0);
+                imageColor6.setImageResource(R.drawable.ic_done);
 
                 setSubTitleIndicator();
             }
@@ -210,6 +228,7 @@ public class CreateQuotesActivity extends AppCompatActivity {
                 imageColor3.setImageResource(R.drawable.ic_done);
                 imageColor4.setImageResource(0);
                 imageColor5.setImageResource(0);
+                imageColor6.setImageResource(0);
 
                 setSubTitleIndicator();
             }
@@ -224,6 +243,7 @@ public class CreateQuotesActivity extends AppCompatActivity {
                 imageColor3.setImageResource(0);
                 imageColor4.setImageResource(R.drawable.ic_done);
                 imageColor5.setImageResource(0);
+                imageColor6.setImageResource(0);
 
                 setSubTitleIndicator();
             }
@@ -232,12 +252,13 @@ public class CreateQuotesActivity extends AppCompatActivity {
         layoutMiscellaneous.findViewById(R.id.viewColor5).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                selectedQuoteCategory = "#000000";
+                selectedQuoteCategory = "#4E9F3D";
                 imageColor1.setImageResource(0);
                 imageColor2.setImageResource(0);
                 imageColor3.setImageResource(0);
                 imageColor4.setImageResource(0);
                 imageColor5.setImageResource(R.drawable.ic_done);
+                imageColor6.setImageResource(0);
 
                 setSubTitleIndicator();
             }
@@ -248,13 +269,16 @@ public class CreateQuotesActivity extends AppCompatActivity {
                 case "#FDBE3B":
                     layoutMiscellaneous.findViewById(R.id.viewColor2).performClick();
                     break;
+                case "#FF6600":
+                    layoutMiscellaneous.findViewById(R.id.viewColor6).performClick();
+                    break;
                 case "#FF4842":
                     layoutMiscellaneous.findViewById(R.id.viewColor3).performClick();
                     break;
                 case "#3A52Fc":
                     layoutMiscellaneous.findViewById(R.id.viewColor4).performClick();
                     break;
-                case "#000000":
+                case "#4E9F3D":
                     layoutMiscellaneous.findViewById(R.id.viewColor5).performClick();
                     break;
             }
@@ -355,9 +379,9 @@ public class CreateQuotesActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     if (inputSourceURL.getText().toString().trim().isEmpty()) {
-                        Toast.makeText(CreateQuotesActivity.this, "Enter URL", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CreateQuotesActivity.this, "Укажите ссылку!", Toast.LENGTH_SHORT).show();
                     } else if (!Patterns.WEB_URL.matcher(inputSourceURL.getText().toString()).matches()) {
-                        Toast.makeText(CreateQuotesActivity.this, "Enter valid URL", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CreateQuotesActivity.this, "Укажите корректную ссылку!", Toast.LENGTH_SHORT).show();
                     } else {
                         textWebSourceURL.setText(inputSourceURL.getText().toString());
                         layoutWebURL.setVisibility(View.VISIBLE);

@@ -78,7 +78,7 @@ public class QuotesAdapter extends RecyclerView.Adapter<QuotesAdapter.QuoteViewH
         QuoteViewHolder(@NonNull View itemView) {
             super(itemView);
             textTitle = itemView.findViewById(R.id.textTitle);
-            textSubtitle = itemView.findViewById(R.id.textSubtitle);
+            textSubtitle = itemView.findViewById(R.id.textAuthor);
             textDateTime = itemView.findViewById(R.id.textDateTime);
             categoryIndicator = itemView.findViewById(R.id.categoryIndicator);
             layoutQuote = itemView.findViewById(R.id.layoutQuote);
@@ -97,7 +97,7 @@ public class QuotesAdapter extends RecyclerView.Adapter<QuotesAdapter.QuoteViewH
             if (quote.getColor() != null) {
                 gradientDrawable.setColor(Color.parseColor(quote.getColor()));
             } else {
-                gradientDrawable.setColor(Color.parseColor("#333333"));
+                gradientDrawable.setColor(Color.parseColor("#2a313f"));
             }
         }
     }

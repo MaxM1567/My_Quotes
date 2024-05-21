@@ -17,12 +17,12 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:animateLayoutChanges="true">
+            android:animateLayoutChanges="true" >
 
             <ImageView
                 android:id="@+id/imageBack"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
                 android:layout_marginStart="6dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="12dp"
@@ -34,8 +34,8 @@
             
             <ImageView
                 android:id="@+id/imageSave"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_marginEnd="12dp"
                 android:background="@drawable/background_done_button"
                 android:contentDescription="@string/app_name"
@@ -49,20 +49,20 @@
             <EditText
                 android:id="@+id/inputQuoteText"
                 android:layout_width="match_parent"
-                android:layout_height="35dp"
+                android:layout_height="40dp"
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="12dp"
                 android:background="@null"
 
                 android:hint="@string/quote_text"
-                android:imeOptions="actionDone"
+                android:imeOptions="actionNext"
                 android:importantForAutofill="no"
                 android:includeFontPadding="false"
-                android:inputType="text"
+                android:inputType="textCapSentences"
                 android:textColor="@color/colorWhite"
                 android:textColorHint="@color/colorTextHint"
-                android:textSize="16sp"
+                android:textSize="20sp"
                 app:layout_constraintTop_toBottomOf="@id/imageBack" />
 
             <TextView
@@ -72,7 +72,7 @@
 
                 android:includeFontPadding="false"
                 android:textColor="@color/colorIcons"
-                android:textSize="10sp"
+                android:textSize="13sp"
                 app:layout_constraintEnd_toEndOf="@id/inputQuoteText"
                 app:layout_constraintStart_toStartOf="@id/inputQuoteText"
                 app:layout_constraintTop_toBottomOf="@id/inputQuoteText" />
@@ -81,26 +81,34 @@
                 android:id="@+id/inputQuoteAuthor"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="12dp"
+
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+
                 android:background="@null"
+
+                android:imeOptions="actionDone"
 
                 android:hint="@string/quote_author"
                 android:importantForAutofill="no"
                 android:includeFontPadding="false"
-                android:inputType="textMultiLine"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"
+                android:inputType="textCapWords"
+
                 android:textColor="@color/colorTextSubtitle"
                 android:textColorHint="@color/colorTextHint"
-                android:textSize="13sp"
+                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/viewSubtitleIndicator"
+                app:layout_constraintStart_toEndOf="@id/viewAuthorIndicator"
                 app:layout_constraintTop_toBottomOf="@id/textDateTime"/>
 
             <View
-                android:id="@+id/viewSubtitleIndicator"
+                android:visibility="gone"
+
+                android:id="@+id/viewAuthorIndicator"
                 android:layout_width="5dp"
                 android:layout_height="0dp"
                 android:layout_marginStart="12dp"
@@ -160,7 +168,7 @@
                 android:minHeight="100dp"
                 android:textColor="@color/colorWhite"
                 android:textColorHint="@color/colorTextHint"
-                android:textSize="13sp"
+                android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/layoutSourceURL"/>
 

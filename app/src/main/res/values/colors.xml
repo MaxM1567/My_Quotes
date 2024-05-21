@@ -1,23 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#292929</color>
-    <color name="colorPrimaryDark">#292929</color>
-    <color name="colorAccent">#4272FF</color>
-    <color name="colorWhite">#FFFFFF</color>
+    <!--    ГЛАВНАЯ СТРАНИЦА-->
+    <color name="colorPrimary">#222831</color>
+    <color name="colorPrimaryDark">#222831</color>
+    <color name="colorAccent">#76ABAE</color>
+<!--    <color name="colorSearchBackground">#2C394B</color>-->
+    <color name="colorSearchBackground">#2a323d</color>
     <color name="colorSearchIcon">#DBDBDB</color>
+
+    <color name="colorWhite">#FFFFFF</color>
     <color name="colorTextHint">#7B7B7B</color>
     <color name="colorQuickActionsBackground">#2F2D2E</color>
     <color name="colorIcons">#A4A4A4</color>
     <color name="colorTextSubtitle">#CECECE</color>
-    <color name="colorDefaultQuoteColor">#333333</color>
-    <color name="colorQuoteSubtitleText">#FAFAFA</color>
-    <color name="colorSearchBackground">#333333</color>
-    <color name="colorMiscellaneousBackground">#1F1F1F</color>
+    <color name="colorQuoteAuthor">#AAAAAA</color>
+    <color name="colorDataQuoteCreate">#E1E1E1</color>
+    <color name="colorMiscellaneousBackground">#1C2027</color>
+
+    <!--    КОНТЕЙНЕР ЦИТАТЫ-->
+    <color name="defaultQuoteContainer1">#303747</color>
+    <color name="defaultQuoteContainer2">#2a313f</color>
 
     <color name="colorQuoteColor2">#FDBE3B</color>
     <color name="colorQuoteColor3">#FF4842</color>
     <color name="colorQuoteColor4">#3A52Fc</color>
-    <color name="colorQuoteColor5">#000000</color>
+    <color name="colorQuoteColor5">#4E9F3D</color>
+    <color name="colorQuoteColor6">#FF6600</color>
 
     <color name="colorDelete">#FF4842</color>
+
+    <color name="grayDone">#000000</color>
+
+    <!--    Miscellaneous-->
+    <color name="categoryText">#BCBCBC</color>
 </resources>
